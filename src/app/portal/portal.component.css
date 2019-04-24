@@ -1,0 +1,29 @@
+.movies-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:30px 50px;
+    background: rgba(0,0,0,0.02);
+}
+.movie-card{
+    width:300px;
+    height:200px;
+    margin-right:20px;
+    margin-bottom:20px;
+}
+.rate-button{
+    background:orangered;
+    color:white;
+}
+.rating{
+    justify-content: flex-start;
+}
+.rating-input-container{
+    position:fixed;
+    width:300px;
+    top:300px;
+    right:calc(50% - 150px);
+    padding:20px;
+    background:white;
+    z-index:99;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}

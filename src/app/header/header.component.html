@@ -1,0 +1,27 @@
+<header class="flex">
+  <div class="logo">
+    RecSys
+  </div>
+  <div class="search" *ngIf="showOptions">
+    <mat-form-field floatLabel="never">
+      <input type="search" matInput placeholder="Search Movie.." [(ngModel)]="value">
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-icon-button [matMenuTriggerFor]="searchResult" (click)="search()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <mat-menu #searchResult="matMenu" xPosition="before">
+      <button mat-menu-item *ngFor="let res of searchResultArray">
+        <div class="res-container flex">
+          <div class="res-title">{{res.title}}</div>
+          <div class="res-rating">{{res.rating}}</div>
+        </div>
+      </button>
+    </mat-menu>
+  </div>
+  <div class="logout" *ngIf="showOptions">
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
+</header>

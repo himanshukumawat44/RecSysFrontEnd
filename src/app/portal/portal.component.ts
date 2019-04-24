@@ -1,0 +1,74 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GetUrlService } from '../get-url.service';
+import { DummyDataServiceService } from '../dummy-data-service.service';
+import { LocalStorageService } from '../local-storage.service';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-portal',
+  templateUrl: './portal.component.html',
+  styleUrls: ['./portal.component.css']
+})
+export class PortalComponent implements OnInit {
+
+  recMovies = [];
+  ratMovies = [];
+  dummyMovies = [];
+  showRatingInput = false;
+  ratingInput = 1;
+  selectedItemId = -1;
+  constructor(private router : Router, private http : HttpClient, private getUrlService : GetUrlService, private dummyData : DummyDataServiceService, private storage : LocalStorageService ) {
+    console.log(storage.token);
+    //if(this.storage.token == ''){
+      //this.router.navigate(['']);
+    //}
+	
+	if(localStorage.getItem('token') == null){
+      this.router.navigate(['']);
+    }
+    
+    const headerDict = {
+      'Content-Type': 'application/json',
+	  'Authorization': 'Bearer '+ localStorage.getItem('token')
+      //'bearer': this.storage.token
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    this.http.get(this.getUrlService.getRatedMovies,requestOptions).subscribe(data=>{
+      
+      this.ratMovies.push(data);
+      // console.log(this.movies);
+	  this.http.get(this.getUrlService.getRecMovies,requestOptions).subscribe(data=>{
+      
+      this.recMovies.push(data);
+      // console.log(this.movies);
+    });
+
+    });
+    // this.dummyMovies = this.dummyData.likedMovies;
+    // this.recMovies.push(this.dummyMovies);
+    // this.ratMovies.push(this.dummyMovies);
+
+  }
+
+  ngOnInit() {
+  }
+  submitRating(){
+    this.showRatingInput=false;
+  }
+  openRatingInput(id){
+    this.selectedItemId=id;
+    this.showRatingInput=true;
+    console.log(id);
+  }
+  closeRatingInput(){
+    this.showRatingInput=false;
+  }
+  
+
+}

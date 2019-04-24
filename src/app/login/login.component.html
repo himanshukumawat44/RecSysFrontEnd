@@ -1,0 +1,12 @@
+<div class="login-container flex">
+  <h1>User Login</h1>
+  <form class="flex" ngForm  (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Username" [(ngModel)]="username" name="user_name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="user_pass" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" >Login</button>
+  </form>
+</div>

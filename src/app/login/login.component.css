@@ -1,0 +1,12 @@
+.login-container{
+    flex-direction:column;
+    background: rgba(0,0,0,0.02);
+    padding:50px;
+}
+.login-container form{
+    flex-direction:column;
+    width:400px;
+    padding:30px;
+    background:white;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,17 @@
+header.flex {
+    padding: 10px 100px;
+    justify-content: space-between;
+}
+.logo{
+    margin-right:auto;
+    font-weight:bold;
+    font-size:20px;
+    color:rgba(0,0,0,0.7);
+}
+mat-form-field{
+    width:300px;
+}
+.res-container.flex {
+    justify-content: space-between;
+    /* width: 300px; */
+}
