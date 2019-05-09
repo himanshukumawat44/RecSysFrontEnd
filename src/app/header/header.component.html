@@ -4,12 +4,12 @@
   </div>
   <div class="search" *ngIf="checkLogin()">
     <mat-form-field floatLabel="never">
-      <input type="search" matInput placeholder="Search Movie.." [(ngModel)]="value">
+      <input type="search" matInput placeholder="Search Movie.." [(ngModel)]="value" (keyup)="getKeyCode($event);menuTrigger.openMenu()">
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-    <button mat-icon-button [matMenuTriggerFor]="searchResult" (click)="search()">
+    <button mat-icon-button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="searchResult" (click)="search()" >
       <mat-icon>search</mat-icon>
     </button>
     <mat-menu #searchResult="matMenu" xPosition="before">

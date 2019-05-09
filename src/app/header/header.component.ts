@@ -32,17 +32,23 @@ export class HeaderComponent implements OnInit {
   searchResultArray = [];
   aMovies = [];
   showOptions = false;
+  getKeyCode(event){
+    if(event.keyCode == 13){
+      //console.log("searching..");
+      this.search();
+    }
+  }
   search(){
 	this.searchResultArray.length = 0;
-    console.log("searching for "+this.value);
+    //console.log("searching for "+this.value);
     if(this.value != ''){
-      console.log("searching..");
+      //console.log("searching..");
       var found = 0;
       this.aMovies[0].forEach((it,i)=>{
-        console.log("checking for "+it.title);
+        //console.log("checking for "+it.title);
         if(it.title.toLowerCase().match(this.value.toLowerCase())){
           this.searchResultArray.push(it);
-          console.log(it.title);
+          //console.log(it.title);
           found = 1;
         }
       });
