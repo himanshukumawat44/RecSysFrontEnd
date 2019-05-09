@@ -60,11 +60,31 @@ export class PortalComponent implements OnInit {
   }
   submitRating(){
     this.showRatingInput=false;
+    this.showSpinner = true;
+    const headerDict = {
+      'Content-Type': 'application/json',
+	  'Authorization': 'Bearer '+ localStorage.getItem('token')
+      //'bearer': this.storage.token
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+    const movie = {
+      sno : this.selectedItemId,
+      rating : this.ratingInput
+    }
+    this.http.post(this.getUrlService.submitRating,movie,requestOptions).subscribe(data=>{
+      
+      console.log(data);
+      this.showSpinner = false;
+      // console.log(this.movies);
+    });
   }
   openRatingInput(id){
     this.selectedItemId=id;
     this.showRatingInput=true;
-    console.log(id);
+    console.log(id,this.ratingInput);
   }
   closeRatingInput(){
     this.showRatingInput=false;

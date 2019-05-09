@@ -11,6 +11,8 @@ export class GetUrlService {
     this.getRatedMovies = 'https://583fd270-abbd-4b40-8064-bc0572bc38ad.mock.pstmn.io/GetMoviesDataAPI/ReviewedMovies?user_id=672';
     this.getRecMovies = 'https://583fd270-abbd-4b40-8064-bc0572bc38ad.mock.pstmn.io/GetMoviesDataAPI/RecommendedMovies?user_id=672';
     this.getLogin = 'https://583fd270-abbd-4b40-8064-bc0572bc38ad.mock.pstmn.io/GetMoviesDataAPI/Login';
+    this.submitRating = 'https://583fd270-abbd-4b40-8064-bc0572bc38ad.mock.pstmn.io/GetMoviesDataAPI/EditMovieRating';
+    this.getMovieById = 'http://www.omdbapi.com/?i=tt'+this.movieId+'&apikey=a3b2c8f0';
 	// this.getAllMovies = 'http://localhost:51066/GetMoviesDataAPI/GetMovies';
   //   this.getRatedMovies = 'http://localhost:51066/GetMoviesDataAPI/ReviewedMovies';
   //   this.getRecMovies = 'http://localhost:51066/GetMoviesDataAPI/RecommendedMovies';
@@ -21,5 +23,7 @@ export class GetUrlService {
   getRatedMovies:string;
   getRecMovies:string;
   getLogin:string;
-
+  submitRating:string;
+  getMovieById:string;
+  movieId;
 }
