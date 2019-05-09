@@ -6,6 +6,7 @@ import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { GetUrlService } from '../get-url.service';
 import { LocalStorageService } from '../local-storage.service';
+import { LogoutService } from '../logout.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ import { LocalStorageService } from '../local-storage.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private storage : LocalStorageService,private dummydata:DummyDataServiceService, private router: Router,private loginService : LoginServiceService,private http : HttpClient,  private getUrlService : GetUrlService) { 
+  constructor(private storage : LocalStorageService,private dummydata:DummyDataServiceService, private router: Router,private loginService : LoginServiceService, private logoutService : LogoutService,private http : HttpClient,  private getUrlService : GetUrlService) { 
     this.http.get(this.getUrlService.getAllMovies).subscribe(data=>{
       this.aMovies.push(data);
     });
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
   value='';
   searchResultArray = [];
   aMovies = [];
-  showOptions = true;
+  showOptions = false;
   search(){
 	this.searchResultArray.length = 0;
     console.log("searching for "+this.value);
@@ -57,10 +58,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.loginService.loggedIn = false;
-    this.storage.token = '';
-	localSorage.removeItem('token');
-    this.router.navigate(['']);
+    this.logoutService.logout();
+  }
+  checkLogin(){
+    if(this.loginService.loggedIn){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }

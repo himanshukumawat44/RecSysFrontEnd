@@ -5,6 +5,7 @@ import { DummyDataServiceService } from '../dummy-data-service.service';
 import { LocalStorageService } from '../local-storage.service';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
+import { LoginServiceService } from '../login-service.service';
 
 @Component({
   selector: 'app-portal',
@@ -19,16 +20,13 @@ export class PortalComponent implements OnInit {
   showRatingInput = false;
   ratingInput = 1;
   selectedItemId = -1;
-  constructor(private router : Router, private http : HttpClient, private getUrlService : GetUrlService, private dummyData : DummyDataServiceService, private storage : LocalStorageService ) {
+  showSpinner = true;
+  constructor(private loginService: LoginServiceService, private router : Router, private http : HttpClient, private getUrlService : GetUrlService, private dummyData : DummyDataServiceService, private storage : LocalStorageService ) {
     console.log(storage.token);
     //if(this.storage.token == ''){
       //this.router.navigate(['']);
     //}
-	
-	if(localStorage.getItem('token') == null){
-      this.router.navigate(['']);
-    }
-    
+    console.log(this.loginService.loggedIn);
     const headerDict = {
       'Content-Type': 'application/json',
 	  'Authorization': 'Bearer '+ localStorage.getItem('token')
@@ -43,9 +41,11 @@ export class PortalComponent implements OnInit {
       
       this.ratMovies.push(data);
       // console.log(this.movies);
+      
 	  this.http.get(this.getUrlService.getRecMovies,requestOptions).subscribe(data=>{
       
       this.recMovies.push(data);
+      this.showSpinner = false;
       // console.log(this.movies);
     });
 

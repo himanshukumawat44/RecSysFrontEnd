@@ -16,6 +16,8 @@ import { DummyDataServiceService } from './dummy-data-service.service';
 import { LoginServiceService } from './login-service.service';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LocalStorageService } from './local-storage.service';
+import { AuthGuardService } from './auth-guard.service';
+import { LogoutService } from './logout.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { LocalStorageService } from './local-storage.service';
       },
       {
         path : 'portal',
-        component : PortalComponent
+        component : PortalComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path : 'loading',
@@ -47,7 +50,7 @@ import { LocalStorageService } from './local-storage.service';
       }
     ])
   ],
-  providers: [GetUrlService,DummyDataServiceService,LoginServiceService,LocalStorageService],
+  providers: [GetUrlService,DummyDataServiceService,LoginServiceService,LocalStorageService,AuthGuardService, LogoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

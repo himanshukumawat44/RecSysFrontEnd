@@ -1,6 +1,6 @@
 .login-container{
     flex-direction:column;
-    background: rgba(0,0,0,0.02);
+    /* background: rgba(0,0,0,0.02); */
     padding:50px;
 }
 .login-container form{
@@ -9,4 +9,18 @@
     padding:30px;
     background:white;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+.spinner-container{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0,0,0,0.5);
+    z-index:999;
+}
+.spinner{
+    background: white;
+    padding:50px;
+    box-shadow:0 0 5px rgba(0,0,0,0.2);
 }

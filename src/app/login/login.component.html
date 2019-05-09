@@ -1,12 +1,19 @@
 <div class="login-container flex">
   <h1>User Login</h1>
-  <form class="flex" ngForm  (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <input type="text" matInput placeholder="Username" [(ngModel)]="username" name="user_name" required>
+  <form class="flex" ngForm #f  (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+      <input type="text" matInput placeholder="Username" [(ngModel)]="username" name="user_name" required (keyup)="onKeyUp()">
     </mat-form-field>
-    <mat-form-field>
-      <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="user_pass" required>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+      <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="user_pass" required (keyup)="onKeyUp()">
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" >Login</button>
+    <button mat-raised-button color="primary" type="submit" [disabled] = "disableButton">Login</button>
   </form>
+</div>
+<div class="spinner-container flex" *ngIf="showSpinner">
+    <div class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
 </div>

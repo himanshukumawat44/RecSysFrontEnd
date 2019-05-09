@@ -2,7 +2,7 @@
   <div class="logo">
     RecSys
   </div>
-  <div class="search" *ngIf="showOptions">
+  <div class="search" *ngIf="checkLogin()">
     <mat-form-field floatLabel="never">
       <input type="search" matInput placeholder="Search Movie.." [(ngModel)]="value">
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
@@ -21,7 +21,7 @@
       </button>
     </mat-menu>
   </div>
-  <div class="logout" *ngIf="showOptions">
+  <div class="logout" *ngIf="checkLogin()">
     <button mat-button (click)="logout()">Logout</button>
   </div>
 </header>
